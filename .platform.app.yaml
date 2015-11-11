@@ -29,7 +29,7 @@ web:
           allow: true
           expires: -1
 relationships:
-  first_db: "main_database:mongodb"
+  first_db: "db:mongodb"
 dependencies:
   nodejs:
     pm2: "^0.15.10"
