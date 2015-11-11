@@ -16,9 +16,9 @@ web:
       # The key is a PCRE regular expression that is matched against the
       # full request path.
       rules:
-          "\.png$":
-              allow: true
-              expires: -1
+        '\.png$':
+          allow: true
+          expires: -1
 dependencies:
   nodejs:
     pm2: "^0.15.10"
