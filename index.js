@@ -6,7 +6,8 @@ var config= require("platformsh").config();
 var mongoose = require('mongoose');
 
 // Mongoose connection to MongoDB 
-mongoose.connect('mongodb://'+ config.relationships.mongodb[0]["username"]+':'+config.relationships.mongodb[0]['password']+ "@" + config.relationships.mongodb[0]['host']+ ":" + config.relationships.mongodb[0]['port']+ '/' + config.relationships.mongodb[0]['path'], function (err) {
+var db = config.relationships.first_db[0]
+mongoose.connect('mongodb://'+ db["username"]+':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'], function (err) {
   if (err) {
     if (err) console.error(err);
   }
