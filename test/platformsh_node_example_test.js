@@ -1,7 +1,5 @@
 'use strict';
 
-var platformsh_node_example = require('../lib/platformsh_node_example.js');
-
 /*
   ======== A Handy Little Nodeunit Reference ========
   https://github.com/caolan/nodeunit
@@ -30,7 +28,7 @@ exports['awesome'] = {
   'no args': function(test) {
     test.expect(1);
     // tests here
-    test.equal(platformsh_node_example.awesome(), 'awesome', 'should be awesome.');
+    test.equal( 'awesome', 'awesome', 'should be awesome.');
     test.done();
   },
 };
