@@ -1,17 +1,30 @@
 name: node
+#The name is yours to choose
 type: nodejs
-
+#Type of the runtime
 web:
   commands:
     start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
-    #in this setup you will find your application stdout and stderr in /app/run/logs
+    #command used to start your daemon. Needs to run in the foreground
+    #in this setup you will find your application's logs
+    #with stdout and stderr in /app/run/logs
   locations:
     "/public":
       passthru: false
+      # Whether to forward disallowed and missing resources from this
+      # location to the application.
+      # (Can be true, false or a URI path string.)
       root: "public"
-      # Whether to allow files not matching a rule or not.
+      expires: 3d
+      # How long to allow static assets from this location to be cached.
+      # (Can be a time or -1 for no caching. Times can be suffixed with
+      # "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours),
+      # "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).)
       allow: true
       rules:
+        # Specific overrides.
+        # The key is a PCRE regular expression that is matched against the
+        # full request path.
         '\.png$':
           allow: true
           expires: -1
