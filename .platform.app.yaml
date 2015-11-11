@@ -1,4 +1,4 @@
-name: node
+name: app
 #The name is yours to choose
 type: nodejs
 #Type of the runtime
@@ -29,14 +29,19 @@ web:
           allow: true
           expires: -1
 relationships:
-  mongodb: "mongodb:mongodb"
+  first_db: "main_database:mongodb"
 dependencies:
   nodejs:
     pm2: "^0.15.10"
     "grunt-cli": "^0.1.13"
+  #this is like install with npm -g (globally)
 hooks:
+    #no need to run npm install. If a package.json is found, it runs 
+    #automatically
     build: |
       grunt
 mounts:
+  # these are the R/W mounts
   "/run": "shared:files/run"
 disk: 512
+# Disk size for app-server
