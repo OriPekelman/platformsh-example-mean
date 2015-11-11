@@ -30,7 +30,7 @@ Thing.find({}, function(err, foo) {
 
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
-  response.end("<html><head></head><body><h1><img src='js.png'>Hello node</h1><pre>"+ resp +"</pre><br><pre>" + JSON.stringify(config, null, 4) + "</pre></body></html>");
+  response.end("<html><head></head><body><h1><img src='public/js.png'>Hello node!</h1><h2>Something from Mongo:</h2><pre>"+ resp +"</pre><h2>The Platform.sh configuration:</h2><pre>" + JSON.stringify(config, null, 4) + "</pre></body></html>");
 });
 
 server.listen(config.port);
