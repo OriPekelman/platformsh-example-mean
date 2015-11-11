@@ -35,7 +35,6 @@ dependencies:
     pm2: "^0.15.10"
 hooks:
     build: |
-      npm install
       grunt
 mounts:
   "/run": "shared:files/run"
