@@ -9,6 +9,16 @@ web:
       passthru: true
       expires: 1h
       root: "public"
+      # Whether to allow files not matching a rule or not.
+      allow: true
+
+      # Specific overrides.
+      # The key is a PCRE regular expression that is matched against the
+      # full request path.
+      rules:
+          "\.png$":
+              allow: true
+              expires: -1
 dependencies:
   nodejs:
     pm2: "^0.15.10"
