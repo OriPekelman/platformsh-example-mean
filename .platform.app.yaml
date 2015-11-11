@@ -6,15 +6,10 @@ web:
     start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
   locations:
     "/":
-      passthru: true
-      expires: 1h
+      passthru: false
       root: "public"
       # Whether to allow files not matching a rule or not.
       allow: true
-
-      # Specific overrides.
-      # The key is a PCRE regular expression that is matched against the
-      # full request path.
       rules:
         '\.png$':
           allow: true
@@ -22,8 +17,6 @@ web:
 dependencies:
   nodejs:
     pm2: "^0.15.10"
-relationships:
-  mongodb: "mongodb:mongodb"
 mounts:
   "/run": "shared:files/run"
 disk: 512

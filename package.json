@@ -13,8 +13,6 @@
   "author": "Ori Pekelman",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^2.0.48",
-    "mongoose": "^4.2.5",
     "platformsh": "^0.0.1"
   }
 }
