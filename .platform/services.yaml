@@ -1,0 +1,3 @@
+mongodb:
+  type: mongodb
+  disk: 1000
