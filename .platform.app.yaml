@@ -33,7 +33,7 @@ relationships:
 dependencies:
   nodejs:
     pm2: "^0.15.10",
-    grunt-cli: "^0.1.13"
+    "grunt-cli": "^0.1.13"
 hooks:
     build: |
       grunt
