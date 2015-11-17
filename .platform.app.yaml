@@ -1,5 +1,5 @@
 name: node
-type: nodejs
+type: php
 
 web:
   commands:
@@ -15,9 +15,6 @@ web:
         '\.png$':
           allow: true
           expires: -1
-dependencies:
-  nodejs:
-    pm2: "^0.15.10"
 mounts:
   "/run": "shared:files/run"
 disk: 512
