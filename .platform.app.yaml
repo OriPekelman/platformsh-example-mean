@@ -21,3 +21,5 @@ dependencies:
 mounts:
   "/run": "shared:files/run"
 disk: 512
+hooks:
+  build: cd my-app && mvn compile && java -cp target/classes com.mycompany.app.App
