@@ -19,7 +19,8 @@ hooks:
     build: |
       gulp cssmin
       gulp uglify
-    deploy: export NODE_ENV=production
+    deploy: |
+      export NODE_ENV=production
 mounts:
   # these are the R/W mounts
   "/run": "shared:files/run"
