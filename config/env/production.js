@@ -1,6 +1,6 @@
 'use strict';
 var config= require("platformsh").config();
-if (config.relationships!=null{
+if (config.relationships!=null){
   var db = config.relationships.first_db[0]
   process.env.MONGOHQ_URL = 'mongodb://'+ db["username"]+':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
 }
