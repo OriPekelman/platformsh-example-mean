@@ -2,7 +2,7 @@
 var config= require("platformsh").config();
 if (config.relationships!=null){
   var db = config.relationships.first_db[0]
-  process.env.MONGOHQ_URL = 'mongodb://'+ db["username"]+':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
+  var mongo_url = 'mongodb://'+ db["username"]+':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
 }
 var path = require('path'),
   rootPath = path.normalize(__dirname + '/../..');
@@ -22,7 +22,7 @@ module.exports = {
     }
   },
   hostname: process.env.HOST || process.env.HOSTNAME,
-  db: process.env.MONGOHQ_URL,
+  db: mongo_url,
   templateEngine: 'swig',
 
   // The secret should be set to a non-guessable string that

@@ -2,10 +2,10 @@
 var config= require("platformsh").config();
 if (config.relationships!=null){
   var db = config.relationships.first_db[0]
-  process.env.MONGOHQ_URL = 'mongodb://'+ db["username"]+':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
+  var mongo_url = 'mongodb://'+ db["username"]+':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
 }
 module.exports = {
-  db: process.env.MONGOHQ_URL,
+  db: mongo_url,
   /**
    * Database options that will be passed directly to mongoose.connect
    * Below are some examples.
