@@ -1,22 +1,27 @@
 name: node
-type: php:5.6
-
+#The name is yours to choose
+type: nodejs
+#Type of the runtime
 web:
   commands:
-    start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
-    #in this setup you will find your application stdout and stderr in /app/run/logs
-  locations:
-    "/public":
-      passthru: false
-      root: "public"
-      # Whether to allow files not matching a rule or not.
-      allow: true
-      rules:
-        '\.png$':
-          allow: true
-          expires: -1
+    start: "node index.js"
+    #command used to start your daemon. Needs to run in the foreground
+    #in this setup you will find your application's logs
+    #with stdout and stderr in /app/run/logsw
+relationships:
+  first_db: "db:mongodb"
+dependencies:
+  nodejs:
+    gulp: "latest"
+hooks:
+    #no need to run npm install. If a package.json is found, it runs 
+    #automatically
+    build: |
+      gulp cssmin
+      gulp uglify
+    deploy: export NODE_ENV=production
 mounts:
+  # these are the R/W mounts
   "/run": "shared:files/run"
 disk: 512
-hooks:
-  build: ant
+# Disk size for app-server
