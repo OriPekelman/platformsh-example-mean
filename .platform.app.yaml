@@ -4,7 +4,7 @@ type: nodejs
 #Type of the runtime
 web:
   commands:
-    start: "node index.js"
+    start: "node index.js --singleProcess"
     #command used to start your daemon. Needs to run in the foreground
     #in this setup you will find your application's logs
     #with stdout and stderr in /app/run/logsw
