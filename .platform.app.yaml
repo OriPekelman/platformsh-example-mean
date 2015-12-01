@@ -4,7 +4,11 @@ type: nodejs
 #Type of the runtime
 web:
   commands:
-    start: "NODE_ENV=production node server.js --singleProcess"
+start: |
+  exec >>/var/log/app.log 2>&1
+  export NODE_ENV=production
+  rm -f /run/app.sock
+  exec node server.js
     #command used to start your daemon. Needs to run in the foreground
     #in this setup you will find your application's logs
     #with stdout and stderr in /app/run/logsw

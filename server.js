@@ -26,7 +26,6 @@ if ((cluster.isMaster) &&
     // Count the machine's CPUs
     var cpuCount = require('os').cpus().length;
     console.log('Seeing ' + cpuCount+ ' cpus');
-    cpuCount = 1;
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; i += 1) {
         console.log ('forking ',i);
