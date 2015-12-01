@@ -4,42 +4,27 @@ type: nodejs
 #Type of the runtime
 web:
   commands:
-    start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
-    #command used to start your daemon. Needs to run in the foreground
-    #in this setup you will find your application's logs
-    #with stdout and stderr in /app/run/logs
-  locations:
-    "/public":
-      passthru: false
-      # Whether to forward disallowed and missing resources from this
-      # location to the application.
-      # (Can be true, false or a URI path string.)
-      root: "public"
-      expires: 3d
-      # How long to allow static assets from this location to be cached.
-      # (Can be a time or -1 for no caching. Times can be suffixed with
-      # "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours),
-      # "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).)
-      allow: true
-      rules:
-        # Specific overrides.
-        # The key is a PCRE regular expression that is matched against the
-        # full request path.
-        '\.png$':
-          allow: true
-          expires: -1
+    start: |
+      exec >>/var/log/app.log 2>&1
+      export NODE_ENV=production
+      rm -f /run/app.sock
+      exec node server.js
+        #command used to start your daemon. Needs to run in the foreground
+        #in this setup you will find your application's logs
+        #with stdout and stderr in /app/run/logsw
 relationships:
   first_db: "db:mongodb"
 dependencies:
   nodejs:
-    pm2: "^0.15.10"
-    "grunt-cli": "^0.1.13"
-  #this is like install with npm -g (globally)
+    gulp: "latest"
 hooks:
     #no need to run npm install. If a package.json is found, it runs 
     #automatically
     build: |
-      grunt
+      gulp cssmin
+      gulp uglify
+    deploy: |
+      export NODE_ENV=production
 mounts:
   # these are the R/W mounts
   "/run": "shared:files/run"
