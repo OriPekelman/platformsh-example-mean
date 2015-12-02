@@ -25,6 +25,7 @@ if ((cluster.isMaster) &&
     console.log('for real!');
     // Count the machine's CPUs
     var cpuCount = require('os').cpus().length;
+    var cpuCount = 3; //FIXME Hardcoding 3
     console.log('Seeing ' + cpuCount+ ' cpus');
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; i += 1) {
