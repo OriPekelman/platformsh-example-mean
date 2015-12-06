@@ -1,1 +1,5 @@
 node_modules
+.bower-cache/
+.bower-registry/
+bower_components/
+packages/
