@@ -4,7 +4,7 @@
 var mean = require('meanio');
 var cluster = require('cluster');
 var deferred = require('q').defer();
-var config = app.config.clean;
+var config= require("platformsh").config();
 
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
 
@@ -16,7 +16,7 @@ if ((cluster.isMaster) &&
   console.log('for real!');
   // Count the machine's CPUs
 
-  var cpuCount = config.cpus;
+  var cpuCount = config.omp_num_threads || require('os').cpus().length;
   console.log('Seeing ' + cpuCount + ' cpus');
   // Create a worker for each CPU
   for (var i = 0; i < cpuCount; i += 1) {
@@ -43,6 +43,7 @@ if ((cluster.isMaster) &&
   mean.serve({
     workerid: workerId /* more options placeholder*/
   }, function(app) {
+    var config = app.config.clean;
     var port = config.https && config.https.port ? config.https.port : config.http.port;
     console.log('Mean app started on port ' + port + ' (' + process.env.NODE_ENV + ') cluster.worker.id:', workerId);
 
