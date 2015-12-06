@@ -21,6 +21,7 @@ module.exports = {
       cert: ''
     }
   },
+  cpus: config.omp_num_threads || require('os').cpus().length,
   hostname: process.env.HOST || process.env.HOSTNAME,
   db: mongo_url,
   templateEngine: 'swig',

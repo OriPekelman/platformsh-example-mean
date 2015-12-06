@@ -51,7 +51,7 @@
     "serve-favicon": "latest",
     "shelljs": "latest",
     "swig": "latest",
-    "platformsh": "^0.0.1",
+    "platformsh": "^0.0.2",
     "view-helpers": "latest"
   },
   "devDependencies": {
